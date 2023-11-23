@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if page == 'page' %}
+<div> 
+    <form method="POST" action=""> 
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="text" name="uname"> <br><br> 
+        <label>Password:</label>
+        <input type="password" name="pwd"><br><br>
+        <input type="submit" value="login"> 
+    </form>
+    <p>Haven't signed up yet?<a href="{% url 'register' %}">Register here</a></p>
+</div>
+{% else %}
+<div> 
+
+    <form method="POST" action=""> 
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="register">
+
+    </form>
+</div>
+
+{% endif %}
+{% for message in messages %}
+
+    <li>{{message}}</li>
+
+    {% endfor %}
+{% endblock content %}
